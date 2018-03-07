@@ -1,6 +1,6 @@
 <?php
 
-namespace lo\widgets\modal;
+namespace igorvolnyi\widgets\modal;
 
 use yii\base\InvalidConfigException;
 use yii\bootstrap\Modal;
@@ -11,11 +11,12 @@ use yii\web\View;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class ModalAjax
- * @package lo\widgets\modal
+ * Class ModalAjaxMultiple
+ * @package igorvolnyi\widgets\modal
  * @author Lukyanov Andrey <loveorigami@mail.ru>
+ * @author Igor Volnyi <igorvolnyi@gmail.com>
  */
-class ModalAjax extends Modal
+class ModalAjaxMultiple extends Modal
 {
     const MODE_SINGLE = 'id';
     const MODE_MULTI = 'multi';
@@ -125,7 +126,7 @@ class ModalAjax extends Modal
         $view = $this->getView();
         $id = $this->options['id'];
 
-        ModalAjaxAsset::register($view);
+        ModalAjaxMultipleAsset::register($view);
 
         switch ($this->mode) {
             case self::MODE_SINGLE:
@@ -151,7 +152,7 @@ class ModalAjax extends Modal
         $url = is_array($this->url) ? Url::to($this->url) : $this->url;
 
         $view->registerJs("
-            jQuery('#$id').kbModalAjax({
+            jQuery('#$id').kbModalAjaxMultiple({
                 url: '$url',
                 ajaxSubmit: ".($this->ajaxSubmit ? "true" : "false")."
             });
@@ -177,7 +178,7 @@ class ModalAjax extends Modal
 					jQuery('#$id').find('.modal-header span').html('<h3 class=\'text-center\'>' + title + '</h3>');
 				}
 				
-                jQuery('#$id').kbModalAjax({
+                jQuery('#$id').kbModalAjaxMultiple({
                     selector: $(this),
                     url: bs_url,
                     ajaxSubmit: ".($this->ajaxSubmit ? "true" : "false")."

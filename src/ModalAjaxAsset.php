@@ -1,6 +1,6 @@
 <?php
 
-namespace lo\widgets\modal;
+namespace igorvolnyi\widgets\modal;
 
 use yii\web\AssetBundle;
 
@@ -9,7 +9,7 @@ use yii\web\AssetBundle;
  * @package lo\widgets\modal
  * @author Lukyanov Andrey <loveorigami@mail.ru>
  */
-class ModalAjaxAsset extends AssetBundle
+class ModalAjaxMultipleAsset extends AssetBundle
 {
     /**
      * @inheritdoc
@@ -22,7 +22,7 @@ class ModalAjaxAsset extends AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'js/kb-modal-ajax.js',
+        'js/kb-modal-ajax-multiple.js',
     ];
 
     /**

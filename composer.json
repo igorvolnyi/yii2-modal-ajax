@@ -1,17 +1,24 @@
 {
-  "name": "swilson1337/yii2-modal-ajax",
-  "description": "A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside",
+  "name": "igorvolnyi/yii2-modal-ajax",
+  "description": "A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside supporting multiple stacked or nested modal forms",
   "keywords": [
     "yii2",
     "bootstrap",
     "modal",
-    "ajax-modal"
+    "ajax-modal",
+    "multiple",
+    "stacked",
+    "nested"
   ],
-  "homepage": "https://github.com/swilson1337/yii2-modal-ajax",
+  "homepage": "https://github.com/igorvolnyi/yii2-modal-ajax-multiple",
   "minimum-stability": "stable",
   "type": "yii2-extension",
   "license": "MIT",
   "authors": [
+    {
+      "name": "Igor Volnyi",
+      "homepage": "https://vk.com/igorvolnyi"
+    },
     {
       "name": "Karnbrock Gmbh",
       "homepage": "http://karnbrock.biz"
@@ -23,7 +30,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "lo\\widgets\\modal\\": "/src"
+      "igorvolnyi\\widgets\\modal\\": "/src"
     }
   }
 }

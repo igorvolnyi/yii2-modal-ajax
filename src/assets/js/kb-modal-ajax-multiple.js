@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
 
-    var pluginName = 'kbModalAjax';
+    var pluginName = 'kbModalAjaxMultiple';
 
     /**
      * Retrieves the script tags in document
@@ -28,12 +28,12 @@
         return links;
     };
 
-    function ModalAjax(element, options) {
+    function ModalAjaxMultiple(element, options) {
         this.element = element;
         this.init(options);
     }
 
-    ModalAjax.prototype.init = function (options) {
+    ModalAjaxMultiple.prototype.init = function (options) {
         this.selector = options.selector || null;
         this.initalRequestUrl = options.url;
         this.ajaxSubmit = ((options.ajaxSubmit != null) ? options.ajaxSubmit : true);
@@ -45,7 +45,7 @@
      * Requests the content of the modal and injects it, called after the
      * modal is shown
      */
-    ModalAjax.prototype.shown = function () {
+    ModalAjaxMultiple.prototype.shown = function () {
 		
 		if (jQuery(this.element).hasClass('in'))
 		{
@@ -80,7 +80,7 @@
      * Injects the form of given html into the modal and extecutes css and js
      * @param  {string} html the html to inject
      */
-    ModalAjax.prototype.injectHtml = function (html, callback) {
+    ModalAjaxMultiple.prototype.injectHtml = function (html, callback) {
         // Find form and inject it
         var form = jQuery(html).filter('form');
 
@@ -173,7 +173,7 @@
     /**
      * Adds event handlers to the form to check for submit
      */
-    ModalAjax.prototype.formSubmit = function (e) {
+    ModalAjaxMultiple.prototype.formSubmit = function (e) {
 		var form = jQuery(e.target);
 		
         // Convert form to ajax submit
@@ -209,7 +209,7 @@
     $.fn[pluginName] = function (options) {
         return this.each(function () {
             if (!$.data(this, pluginName)) {
-                $.data(this, pluginName, new ModalAjax(this, options));
+                $.data(this, pluginName, new ModalAjaxMultiple(this, options));
             } else {
                 $.data(this, pluginName).initalRequestUrl = options.url;
                 $.data(this, pluginName).selector = options.selector || null;
