@@ -1,9 +1,8 @@
-# Yii2-modal-ajax
-[![Latest Stable Version](https://poser.pugx.org/loveorigami/yii2-modal-ajax/v/stable)](https://packagist.org/packages/loveorigami/yii2-modal-ajax) 
-[![Total Downloads](https://poser.pugx.org/loveorigami/yii2-modal-ajax/downloads)](https://packagist.org/packages/loveorigami/yii2-modal-ajax)
-[![License](https://poser.pugx.org/loveorigami/yii2-modal-ajax/license)](https://packagist.org/packages/loveorigami/yii2-modal-ajax)
+# Yii2-modal-ajax-multiple
 
-A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside.  
+A wrapper around Yii2 Bootstrap Modal for using an ActiveForm via AJAX inside. It supports mutiple stacked modal windows, i.e. when you open one modal window containing a form to create associated data and that form also contains a button to open another modal window, it will work too.
+
+This is a fork of [loveorigami/yii2-modal-ajax](https://github.com/loveorigami/yii2-modal-ajax) and [swilson1337/yii2-modal-ajax](https://github.com/swilson1337/yii2-modal-ajax) which is a slightly updated version. It solves lack of multiple stacked modal windows problem in the original Yii2 extension.
 
 ## Installation
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
@@ -14,7 +13,7 @@ $ php composer.phar require --prefer-dist loveorigami/yii2-modal-ajax "@dev"
 ```
 or add
 ```
-"loveorigami/yii2-modal-ajax": "@dev"
+"igorvolnyi/yii2-modal-ajax-multiple": "*"
 ```
 to the require section of your composer.json file.
 
@@ -70,9 +69,9 @@ public function actionCreate()
 
 ### View
 ```php
-use lo\widgets\modal\ModalAjax;
+use igorvolnyi\widgets\ModalAjaxMultiple;
 
-echo ModalAjax::widget([
+echo ModalAjaxMultiple::widget([
     'id' => 'createCompany',
     'header' => 'Create Company',
     'toggleButton' => [
@@ -89,9 +88,9 @@ echo ModalAjax::widget([
 
 ### Index View - Create (Single Modal Mode)
 ```php
-use lo\widgets\modal\ModalAjax;
+use igorvolnyi\widgets\ModalAjaxMultiple;
 
-echo ModalAjax::widget([
+echo ModalAjaxMultiple::widget([
     'id' => 'createCompany',
     'header' => 'Create Company',
     'toggleButton' => [
@@ -116,7 +115,7 @@ Grid example with data-scenario
 ```
 Modal Ajax with events
 ```php
-use lo\widgets\modal\ModalAjax;
+use igorvolnyi\widgets\ModalAjaxMultiple;
 
 echo ModalAjax::widget([
     'id' => 'updateCompany',
@@ -126,12 +125,12 @@ echo ModalAjax::widget([
     'options' => ['class' => 'header-primary'],
     'pjaxContainer' => '#grid-company-pjax',
     'events'=>[
-        ModalAjax::EVENT_MODAL_SHOW => new \yii\web\JsExpression("
+        ModalAjaxMultiple::EVENT_MODAL_SHOW => new \yii\web\JsExpression("
             function(event, data, status, xhr, selector) {
                 selector.addClass('warning');
             }
        "),
-        ModalAjax::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
+        ModalAjaxMultiple::EVENT_MODAL_SUBMIT => new \yii\web\JsExpression("
             function(event, data, status, xhr, selector) {
                 if(status){
                     if(selector.data('scenario') == 'hello'){
@@ -154,7 +153,7 @@ echo ModalAjax::widget([
 On top if the basic twitter bootstrap modal events the following events are triggered
 
 
-### `kbModalBeforeShow` (ModalAjax::EVENT_BEFORE_SHOW)
+### `kbModalBeforeShow` (ModalAjaxMultiple::EVENT_BEFORE_SHOW)
 This event is triggered right before the view for the form is loaded. Additional parameters available with this event are:
 - `xhr`: _XMLHttpRequest_, the jQuery XML Http Request object used for this transaction.
 - `settings`: _object_, the jQuery ajax settings for this transaction.
@@ -165,7 +164,7 @@ $('#createCompany').on('kbModalBeforeShow', function(event, xhr, settings) {
 });
 ```
 
-### `kbModalShow` (ModalAjax::EVENT_MODAL_SHOW)
+### `kbModalShow` (ModalAjaxMultiple::EVENT_MODAL_SHOW)
 This event is triggered after the view for the form is successful loaded. Additional parameters available with this event are:
 - `data`: _object_, the data object sent via server's response.
 - `status`: _string_, the jQuery AJAX success text status.
@@ -178,7 +177,7 @@ $('#createCompany').on('kbModalShow', function(event, data, status, xhr, selecto
 });
 ```
 
-### `kbModalBeforeSubmit` (ModalAjax::EVENT_BEFORE_SUBMIT)
+### `kbModalBeforeSubmit` (ModalAjaxMultiple::EVENT_BEFORE_SUBMIT)
 This event is triggered right before the form is submitted. Additional parameters available with this event are:
 - `xhr`: _XMLHttpRequest_, the jQuery XML Http Request object used for this transaction.
 - `settings`: _object_, the jQuery ajax settings for this transaction.
@@ -189,7 +188,7 @@ $('#createCompany').on('kbModalBeforeSubmit', function(event, xhr, settings) {
 });
 ```
 
-### `kbModalSubmit` (ModalAjax::EVENT_MODAL_SUBMIT)
+### `kbModalSubmit` (ModalAjaxMultiple::EVENT_MODAL_SUBMIT)
 This event is triggered after the form is successful submitted. Additional parameters available with this event are:
 - `data`: _object_, the data object sent via server's response.
 - `status`: _string_, the jQuery AJAX success text status.
