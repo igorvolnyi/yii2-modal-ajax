@@ -16,6 +16,7 @@ class ModalAjaxMultipleAsset extends AssetBundle
      */
     public $depends = [
         'yii\bootstrap\BootstrapAsset',
+        'yii\widgets\ActiveFormAsset',
     ];
 
     /**

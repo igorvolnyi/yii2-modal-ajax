@@ -82,7 +82,7 @@
      */
     ModalAjaxMultiple.prototype.injectHtml = function (html, callback) {
         // Find form and inject it
-        var form = jQuery(html).filter('form');
+        //var form = jQuery(html).filter('form');
 
         // Remove existing forms
         if (jQuery(this.element).find('form').length > 0) {
@@ -130,11 +130,11 @@
             }
         });
 		
-		var injectionElement = jQuery(this.element).find('.modal-body')[0];
+		var injectionElement = jQuery(this.element).find('.modal-body'); //[0];
 		
 		var doInjection = function()
 		{
-			injectionElement.innerHTML = html;
+			injectionElement.html(html);
 			
 			// Execute inline scripts
 			for (var i = 0; i < inlineInjections.length; i += 1) {
